@@ -1,0 +1,13 @@
+---
+---
+
+<progress
+  class="lg:hidden fixed top-0 z-50 progress progress-info w-full ring-1 ring-slate-100/20"
+  value={50}
+  max="100"></progress>
+
+<script is:inline>
+  document.addEventListener("scroll", () => console.log("scroll"), {
+    passive: true,
+  });
+</script>
