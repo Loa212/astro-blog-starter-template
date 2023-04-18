@@ -2,7 +2,6 @@
 import type { CollectionEntry } from "astro:content";
 import Drawer from "../components/Drawer.astro";
 import Footer from "../components/Footer.astro";
-import ProgressIndicator from "../components/ProgressIndicator.astro";
 
 type Props = CollectionEntry<"blog">["data"];
 const { title, description, pubDate, updatedDate, heroImage } = Astro.props;
@@ -14,21 +13,18 @@ const navLinks = [
 ];
 ---
 
-<!DOCTYPE html>
 <html data-theme="dark" lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width" />
-    <link rel="icon" href="/favicon.svg" />
-    <meta name="generator" content={Astro.generator} />
-    <title>{title}</title>
-    <meta name="description" content={description} />
-  </head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width" />
+  <link rel="icon" href="/favicon.svg" />
+  <meta name="generator" content={Astro.generator} />
+  <title>{title}</title>
+  <meta name="description" content={description} />
+
   <body>
-    <!-- <ProgressIndicator /> -->
     <Drawer navLinks={navLinks}>
       <div class="bg-dark text-white">
-        <div class="fixed w-full bg-dark -mt-1">
+        <div class="fixed w-full bg-dark -mt-1 z-10 right-2">
           <div class="max-w-5xl mx-4 lg:mx-auto text-sm breadcrumbs mt-1">
             <ul>
               <li>
@@ -67,41 +63,40 @@ const navLinks = [
       </div>
       <Footer />
     </Drawer>
-  </body>
+  </body><style is:global>
+    body {
+      font-family: "Montserrat", sans-serif;
+      @apply bg-dark text-light;
+    }
+
+    /* ===== Scrollbar CSS ===== */
+    /* Firefox */
+    * {
+      scrollbar-width: auto;
+      scrollbar-color: #0d0d0d #ffffff;
+    }
+
+    /* Chrome, Edge, and Safari */
+    *::-webkit-scrollbar {
+      width: 6px;
+    }
+
+    *::-webkit-scrollbar-track {
+      background: #ffffff;
+    }
+
+    *::-webkit-scrollbar-thumb {
+      background-color: #0d0d0d;
+      border-radius: 0px;
+      border: 0px solid #ffffff;
+    }
+
+    .content {
+      @apply max-w-7xl mx-auto px-2;
+    }
+
+    .btn-default {
+      @apply text-light font-semibold bg-light/20 px-4 py-2;
+    }
+  </style>
 </html>
-<style is:global>
-  body {
-    font-family: "Montserrat", sans-serif;
-    @apply bg-dark text-light;
-  }
-
-  /* ===== Scrollbar CSS ===== */
-  /* Firefox */
-  * {
-    scrollbar-width: auto;
-    scrollbar-color: #0d0d0d #ffffff;
-  }
-
-  /* Chrome, Edge, and Safari */
-  *::-webkit-scrollbar {
-    width: 6px;
-  }
-
-  *::-webkit-scrollbar-track {
-    background: #ffffff;
-  }
-
-  *::-webkit-scrollbar-thumb {
-    background-color: #0d0d0d;
-    border-radius: 0px;
-    border: 0px solid #ffffff;
-  }
-
-  .content {
-    @apply max-w-7xl mx-auto px-2;
-  }
-
-  .btn-default {
-    @apply text-light font-semibold bg-light/20 px-4 py-2;
-  }
-</style>
